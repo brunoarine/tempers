@@ -17,7 +17,16 @@ use rusb::{DeviceList, GlobalContext};
 const VENDOR_ID: u16 = 0x0c45;
 const PRODUCT_ID: u16 = 0x7401;
 
-// Document this function, AI!
+/// Checks whether a specific USB device is present in the device list.
+///
+/// The function searches for a device matching the predefined vendor ID (`0x0c45`)
+/// and product ID (`0x7401`).
+///
+/// # Arguments
+/// * `devices` - A list of USB devices to search through
+///
+/// # Returns
+/// `true` if a matching device is found, `false` otherwise
 fn is_connected(devices: DeviceList<GlobalContext>) -> bool {
     devices.iter().any(|d| -> bool {
         let descriptor_result = d.device_descriptor();
