@@ -1,6 +1,6 @@
 # TEMPers
 
-A simple Rust utility to read TEMPer v1.4 USB thermometers. This personal project was created to learn Rust while solving a practical need for temperature monitoring in my homelab room.
+A simple Rust utility to get readings from TEMPer v1.4 USB thermometers (0c45:7401). This personal project was created to learn Rust while solving a practical need for temperature monitoring in my homelab room. Requires Rust 1.70+
 
 ## Installation
 
@@ -10,7 +10,7 @@ A simple Rust utility to read TEMPer v1.4 USB thermometers. This personal projec
    cd tempers
    ```
 
-2. Install udev rules to allow non-root access:
+2. On Linux or FreeBSD, install udev rules to allow non-root access:
    ```bash
    sudo cp 70-temper.rules /etc/udev/rules.d/
    sudo udevadm control --reload-rules
@@ -36,8 +36,3 @@ Sample output:
 24.35  # Temperature is given in Celsius degrees
 ```
 
-## Notes
-
-- This is a personal learning project
-- Currently only supports TEMPer v1.4 (0c45:7401)
-- Requires Linux (udev) and Rust 1.70+
