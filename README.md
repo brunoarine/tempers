@@ -1,12 +1,6 @@
 # TEMPers
 
-A simple Rust utility to read TEMPer v1.4 USB thermometers. This personal project was created to learn Rust while solving a practical need for temperature monitoring.
-
-## Features
-
-- Reads current temperature from TEMPer v1.4 devices
-- Simple CLI output
-- Error handling for device disconnections
+A simple Rust utility to read TEMPer v1.4 USB thermometers. This personal project was created to learn Rust while solving a practical need for temperature monitoring in my homelab room.
 
 ## Installation
 
@@ -39,11 +33,11 @@ Run the compiled binary:
 
 Sample output:
 ```
-24.3°C
+24.35  # Temperature is given in Celsius degrees
 ```
 
 ## Notes
 
-- This is a personal learning project - contributions welcome!
+- This is a personal learning project
 - Currently only supports TEMPer v1.4 (0c45:7401)
 - Requires Linux (udev) and Rust 1.70+
