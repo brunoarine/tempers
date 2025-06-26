@@ -30,6 +30,7 @@ fn main() -> Result<(), HidError> {
     // support a single report, this must be set to 0x0. The remaining bytes
     // contain the report data. Therefore, calls to write() will always contain
     // one more byte than the report contains.
+    // Source: https://qbicz.github.io/hidapi/docs/group__API.html
     let query: [u8; 9] = [0x00, 0x01, 0x80, 0x33, 0x01, 0x00, 0x00, 0x00, 0x00];
     let mut buffer: [u8; 8] = [0; 8];
 
