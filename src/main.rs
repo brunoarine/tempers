@@ -26,13 +26,12 @@ fn main() -> Result<(), HidError> {
 
     let device = api.open_path(&device_path)?;
 
-    let mut buffer: [u8; 8] = [0; 8];
-
     // The first byte of data must contain the Report ID. For devices which only
     // support a single report, this must be set to 0x0. The remaining bytes
     // contain the report data. Therefore, calls to write() will always contain
     // one more byte than the report contains.
     let query: [u8; 9] = [0x00, 0x01, 0x80, 0x33, 0x01, 0x00, 0x00, 0x00, 0x00];
+    let mut buffer: [u8; 8] = [0; 8];
 
     device.write(&query)?;
     device.read_timeout(&mut buffer, TIMEOUT_MS)?;
