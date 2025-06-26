@@ -7,18 +7,8 @@ const PRODUCT_ID: u16 = 0x7401;
 
 const TIMEOUT_MS: i32 = 1000;
 
-/// Checks whether a specific USB device is present in the device list.
-fn is_connected(vendor_id: u16, product_id: u16, api: &HidApi) -> bool {
-    api.device_list()
-        .any(|d| d.product_id() == product_id && d.vendor_id() == vendor_id)
-}
-
 fn main() -> Result<(), HidError> {
     let api = HidApi::new()?;
-    if !is_connected(VENDOR_ID, PRODUCT_ID, &api) {
-        eprintln!("Error: TEMPer device not connected");
-        exit(1);
-    }
 
     let maybe_device_path = api
         .device_list()
@@ -30,11 +20,10 @@ fn main() -> Result<(), HidError> {
     let device_path = if let Some(path) = maybe_device_path {
         path
     } else {
-        eprintln!("Error: could not retrieve device path");
+        eprintln!("Error: could not retrieve device path (is the device connected?)");
         exit(1);
     };
 
-    println!("Found TEMPer device at path: {:?}", device_path);
     let device = api.open_path(&device_path)?;
 
     let mut buffer: [u8; 8] = [0; 8];
@@ -47,8 +36,7 @@ fn main() -> Result<(), HidError> {
 
     device.write(&query)?;
     device.read_timeout(&mut buffer, TIMEOUT_MS)?;
-    println!("Buffer: {:?}", buffer);
-    println!("Temp: {:?}", convert_temper_buf(&buffer));
+    println!("{}", convert_temper_buf(&buffer));
 
     Ok(())
 }
