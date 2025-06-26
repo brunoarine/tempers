@@ -42,6 +42,6 @@ fn main() -> Result<(), HidError> {
 
 // Please see https://github.com/edorfaus/TEMPered/wiki/FM75
 fn convert_temper_buf(buf: &[u8; 8]) -> f32 {
-    let adj_temp = ((buf[2] as i32) << 8) + ((buf[3] as i32) & 0xFF);
-    (adj_temp as f32) * (125.0 / 32000.0)
+    let raw_temp = ((buf[2] as i16) << 8) | (buf[3] as i16);
+    raw_temp as f32 * (125.0 / 32000.0)
 }
