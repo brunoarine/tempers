@@ -56,7 +56,7 @@ jobs:
 
     - name: Prepare archive
       run: |
-        strip target/release/hq
+        strip target/release/tempers
         export ARCHIVE_NAME=tempers-${{ env.INPUT_TAG }}-linux-x64.tar.gz
         echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> $GITHUB_ENV
         tar -czvf $ARCHIVE_NAME -C target/release tempers
